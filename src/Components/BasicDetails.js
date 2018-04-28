@@ -19,7 +19,8 @@ export default class BasicDetails extends Component {
     }
 
     fetchBasicDetails = () => {
-        axios.get('http://localhost:3000/resume/basic_details').then((response) => {
+        console.log('process.env.SERVER_URL', process.env);
+        axios.get(`${process.env.SERVER_URL}/resume/basic_details`).then((response) => {
             this.setState({
                 name: response.data.name,
                 designation: response.data.designation,

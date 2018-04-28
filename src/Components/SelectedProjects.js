@@ -17,7 +17,7 @@ export default class SelectedProjects extends Component {
     }
 
     fetchContactDetails = () => {
-        axios.get('http://localhost:3000/resume/contact_details').then((response) => {
+        axios.get(`${process.env.SERVER_URL}/resume/contact_details`).then((response) => {
             this.setState({
                 email: response.data.email,
                 phone_number: response.data.phone_number,
