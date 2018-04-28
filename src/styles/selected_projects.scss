@@ -1,0 +1,25 @@
+.top_touch_shadow
+{
+  position: relative;
+}
+.top_touch_shadow:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  left: 7px;
+  height: 100%;
+  width: 10%;
+  top: -6%;
+  max-width:300px;
+  background: #777;
+  //-webkit-box-shadow: 0 15px 10px #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: -10px 0px 10px 1px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
