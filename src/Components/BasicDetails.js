@@ -49,22 +49,11 @@ export default class BasicDetails extends Component {
                             <hr/>
                             <div className={'description'}>
                                 {this.state.description}
-                                asdas
                                 <br/>
-                                asdas
                                 <br/>
-                                asdas
                                 <br/>
-                                asdas
-                                <br/>
-                                asdas
-                                <br/>
-                                asdas
-                                <br/>
-                                asdas
-                                <br/>
-                                asdas
-                                <br/>
+                              <p>On this page, you can view my works, skills and eductation. Also feel free to download my resume
+                                <a href='/'> here</a></p>
                             </div>
                         </Col>
                         </Row>

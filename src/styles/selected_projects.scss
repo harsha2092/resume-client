@@ -1,6 +1,16 @@
 .top_touch_shadow
 {
   position: relative;
+  .project-row{
+    padding-top: 5%;
+  }
+  .project-row:first-child{
+    padding-top: 0%;
+  }
+
+  .project-name{
+    color: green;
+  }
 }
 .top_touch_shadow:after
 {
