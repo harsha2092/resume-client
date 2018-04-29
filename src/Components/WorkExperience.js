@@ -1,85 +1,99 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
-import {Row, Panel, Col} from "react-bootstrap";
+import { Row, Panel, Col } from "react-bootstrap";
 
 export default class WorkExperience extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            phone_number: '',
-            fetching: true
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      workExperiences: [],
+      fetching: true
     }
+  }
 
-    componentDidMount() {
-        this.fetchContactDetails();
-    }
+  componentDidMount() {
+    this.fetchContactDetails();
+  }
 
-    fetchContactDetails = () => {
-        axios.get(`${process.env.SERVER_URL}/resume/contact_details`).then((response) => {
-            this.setState({
-                email: response.data.email,
-                phone_number: response.data.phone_number,
-                fetching: false
-            });
-        });
-    }
+  fetchContactDetails = () => {
+    axios.get(`${process.env.SERVER_URL}/resume/work_experiences`).then((response) => {
+      this.setState({
+        workExperiences: response.data.work_experiences,
+        fetching: false
+      });
+    });
+  }
 
+  renderRoles = (roles) => {
+    return roles.map((role) => {
+      return (
+          <Row xs={3} className={"roles"}>
+            <Col xs={12}>
+              <div className={"name"}>{role.name}</div>
+              <div>{role.description}</div>
+            </Col>
+          </Row>);
+    });
+  }
 
-    render() {
-        return (this.state.fetching) ? (
-                <div>'Loading'</div>)
-            : (<Panel style={{backgroundColor: '#FBFBFB'}} className="pull_up_card down_shadow">
-                    <Panel.Body>
-                        <Row>
-                            <div style={{marginLeft: '2%'}}>
-                                Contact
-                            </div>
-                            <hr style={{width: '50%'}}/>
-                        </Row>
-                        <Row>
-                            <Col md={4}>
-                                <div>{this.state.email}</div>
-                                <div>{this.state.phone_number}</div>
-                            </Col>
-                            <Col md={8}>
-                                <Row>
-                                    <Col md={8}>
-                                        Email Address
-                                        <input type={'text'}/>
-                                    </Col>
-                                    <Col md={4}>
-                                        Name
-                                        <input type={'text'}/>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    Message
-                                    <input type={'text-area'}/>
-                                </Row>
-                            </Col>
-                            <div style={{marginLeft: '2%'}}>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            asdas
-                            <br/>
-                            </div>
-                        </Row>
-                    </Panel.Body>
-                </Panel>
-            );
-    }
+  renderProjects = (projects) => {
+    return projects.map((project) => {
+      return (
+          <Row xs={3} className={"projects"}>
+            <Col xs={5}>
+              <div className={"name"}>{project.name}</div>
+              <div>{project.description}</div>
+            </Col>
+            <Col xs={7}>
+              {this.renderRoles(project.roles)}
+            </Col>
+          </Row>
+      );
+    });
+  };
+
+  renderHeading = () => (
+      <Row xs={2} className={"heading"}>
+        <Col xs={2}>
+          Company
+        </Col>
+        <Col xs={10}>
+          <Row xs={3}>
+          <Col xs={5}>
+            Project
+          </Col>
+          <Col xs={7}>
+            Role
+          </Col>
+          </Row>
+        </Col>
+      </Row>
+  );
+
+  renderWorkExperiences = () => {
+    return this.state.workExperiences.map((workExperience) => {
+      return (<Row xs={8} className={"company"}>
+        <Col xs={2}>
+          <div className={"name"}>{workExperience.name}</div>
+          <div>{workExperience.timeline}</div>
+        </Col>
+        <Col xs={10}>
+          {this.renderProjects(workExperience.projects)}
+        </Col>
+      </Row>);
+    });
+  }
+
+  render() {
+    return (this.state.fetching) ? (
+            <div>'Loading'</div>)
+        : (<Panel style={{ backgroundColor: '#FBFBFB' }} className="pull_up_card down_shadow">
+              <Panel.Body className={"work-experience"}>
+                {this.renderHeading()}
+                <hr/>
+                {this.renderWorkExperiences()}
+              </Panel.Body>
+            </Panel>
+        );
+  }
 }

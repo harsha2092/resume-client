@@ -7,7 +7,7 @@ export default class SelectedProjects extends Component {
     super(props);
     this.state = {
       selectedProjects: [],
-      hobbies: '',
+      hobbies: [],
       fetching: true
     }
   }
@@ -20,30 +20,36 @@ export default class SelectedProjects extends Component {
     axios.get(`${process.env.SERVER_URL}/resume/projects`).then((response) => {
       this.setState({
         selectedProjects: response.data.projects,
+        fetching: false
+      });
+    });
+
+    axios.get(`${process.env.SERVER_URL}/resume/hobbies`).then((response) => {
+      this.setState({
         hobbies: response.data.hobbies,
         fetching: false
       });
     });
   }
 
-  renderProjectColumns = (projects) =>{
-    return projects.map(project => <Col xs={6}>
-      <Row xs={2} className='project-name'>
-        {project.name}
+  renderColumns = (columnItems) =>{
+    return columnItems.map(column => <Col xs={6}>
+      <Row xs={2} className='column-name'>
+        {column.name}
       </Row>
       <Row xs={2}>
-        {project.description}
+        {column.description}
       </Row>
     </Col>);
   };
-  renderProjects = () => {
+  renderRows = (rowItems) => {
     let returnJSX = [];
-    let projectIndex = 0;
-    while (projectIndex < this.state.selectedProjects.length) {
-      returnJSX.push(<Row className='project-row' style={{paddingLeft: '3%'}}>
-        {this.renderProjectColumns(this.state.selectedProjects.slice(projectIndex,projectIndex+2))}
+    let rowItemsIndex = 0;
+    while (rowItemsIndex < rowItems.length) {
+      returnJSX.push(<Row className='column-row' style={{paddingLeft: '3%'}}>
+        {this.renderColumns(rowItems.slice(rowItemsIndex,rowItemsIndex+2))}
       </Row>);
-      projectIndex +=2 ;
+      rowItemsIndex +=2 ;
     }
     return returnJSX;
 
@@ -62,7 +68,7 @@ export default class SelectedProjects extends Component {
                     <hr/>
                   </Row>
                   <Row xs={6}>
-                    {this.renderProjects()}
+                    {this.renderRows(this.state.selectedProjects)}
                   </Row>
                 </Col>
                 <Col xs={1}>
@@ -75,7 +81,7 @@ export default class SelectedProjects extends Component {
                     <hr/>
                   </Row>
                   <Row xs={6}>
-                    {/*this.renderHobbies(this.state.hobbies);*/}
+                    {this.renderRows(this.state.hobbies)}
                   </Row>
                 </Col>
               </Panel.Body>

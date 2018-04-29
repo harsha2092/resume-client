@@ -1,14 +1,14 @@
 .top_touch_shadow
 {
   position: relative;
-  .project-row{
+  .column-row{
     padding-top: 5%;
   }
-  .project-row:first-child{
+  .column-row:first-child{
     padding-top: 0%;
   }
 
-  .project-name{
+  .column-name{
     color: green;
   }
 }

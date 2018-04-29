@@ -1,0 +1,27 @@
+.work-experience {
+  .heading {
+    margin-bottom: 3%;
+  }
+  .company {
+    margin-bottom: 3%;
+    .name {
+      color: green;
+    }
+    .projects{
+      //border-bottom: 1px solid black;
+      margin-bottom: 3%;
+      .roles{
+        margin-bottom: 3%;
+      }
+      .roles:last-child{
+        margin-bottom: 0%;
+      }
+    }
+    .projects:last-child{
+      margin-bottom: 0%;
+    }
+  }
+  .company:last-child{
+    margin-bottom: 0%;
+  }
+}
