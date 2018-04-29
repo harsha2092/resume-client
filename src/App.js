@@ -4,18 +4,18 @@ import BasicDetails from './Components/BasicDetails';
 import ContactDetails from './Components/ContactDetails';
 import SelectedProjects from "./Components/SelectedProjects";
 import WorkExperience from "./Components/WorkExperience";
-import Eductaion from "./Components/Eductaion";
+import Education from "./Components/Education";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <BasicDetails/>
-        <ContactDetails/>
-        <SelectedProjects/>
+        <div>
+          <BasicDetails/>
+          <ContactDetails/>
+          <SelectedProjects/>
           <WorkExperience/>
-          <Eductaion/>
-      </div>
+          <Education/>
+        </div>
     );
   }
 }

@@ -1,0 +1,23 @@
+.education {
+  .education-detail {
+    margin-bottom: 3%;
+    .name {
+      color: green;
+    }
+  }
+  .education-detail:last-child {
+    margin-bottom: 0%;
+  }
+
+  .language {
+    margin-bottom: 10%;
+    margin-right: -15px;
+    .name {
+      color: green;
+    }
+    .language:last-child {
+      margin-bottom: 0%;
+    }
+
+  }
+}
